@@ -12,7 +12,7 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("select Name from Colors where Name like ? and UserID=?");
+		$stmt = $conn->prepare("select Name from Users where Name like ? and UserID=?");
 		$colorName = "%" . $inData["search"] . "%";
 		$stmt->bind_param("ss", $colorName, $inData["userId"]);
 		$stmt->execute();

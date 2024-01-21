@@ -7,6 +7,7 @@
 	$firstName = "";
 	$lastName = "";
 
+	// Establishes connection to MySQL database
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331"); 	
 	if( $conn->connect_error )
 	{

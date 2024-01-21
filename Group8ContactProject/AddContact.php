@@ -1,9 +1,10 @@
 <?php
 	$inData = getRequestInfo();
 	
-	$color = $inData["color"];
-	$userId = $inData["userId"];
+	$name = $inData["name"];
+	$phone_number = $inData["phone_number"];
 
+	// Establishes connection to MySQL database
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 	if ($conn->connect_error) 
 	{
@@ -11,7 +12,7 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("INSERT into Colors (UserId,Name) VALUES(?,?)");
+		$stmt = $conn->prepare("INSERT into Users (UserId,Name) VALUES(?,?)");
 		$stmt->bind_param("ss", $userId, $color);
 		$stmt->execute();
 		$stmt->close();
