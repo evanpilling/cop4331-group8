@@ -1,8 +1,10 @@
 <?php
 	$inData = getRequestInfo();
 	
-	$name = $inData["name"];
-	$phone_number = $inData["phone_number"];
+	$FirstName = $inData["FirstName"];
+	$LastName = $inData["LastName"];
+	$Login = $inData["Login"];
+	$Password = $inData["Password"];
 
 	// Establishes connection to MySQL database
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
@@ -12,8 +14,8 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("INSERT into Users (UserId,Name) VALUES(?,?)");
-		$stmt->bind_param("ss", $userId, $color);
+		$stmt = $conn->prepare("INSERT into Users(FirstName, LastName, Login, Password) VALUES(?,?,?,?)");
+		$stmt->bind_param("ssss", $FirstName, $LastName, $Login, $Password);
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();
