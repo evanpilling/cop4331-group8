@@ -2,18 +2,18 @@
 
     $inData = getRequestInfo();
 
-    $userId = $inData["userId"];
-    $name = $inData["name"];
+    $ID = $inData["ID"];
+    $FirstName = $inData["FirstName"];
+    $LastName = $inData["LastName"];
 
-    $conn = new mysqli("localhost", "The Beast", "WeLoveCOP4331", "COP4331");
+    $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331"); 
 
     if($conn->connect_error) {
         returnWithError( $conn->connect_error );
     }
 
     else {
-        $stmt = $conn->prepare("DELETE from Users (UserId,Name) VALUES(?,?)");
-        $stmt = bind_param("ss", $userId, $name);
+        $stmt = $conn->prepare("DELETE FROM Contacts WHERE ID='$ID' AND FirstName='$FirstName' AND LastName='$LastName'");
         $stmt->execute();
         $stmt->close();
         $conn->close();
