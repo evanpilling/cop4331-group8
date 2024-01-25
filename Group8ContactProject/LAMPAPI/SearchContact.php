@@ -4,6 +4,8 @@
 	
 	$searchResults = "";
 	$searchCount = 0;
+	$Search = $inData["Search"];
+
 
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 	if ($conn->connect_error) 
@@ -12,9 +14,9 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("SELECT * FROM Contacts WHERE FirstName LIKE ? OR LastName LIKE ? AND UserID=?");
-		$ContactName = "%" . $inData["search"] . "%";
-		$stmt->bind_param("sss", $ContactName, $ContactName, $inData["UserID"]);
+		$stmt = $conn->prepare("SELECT * FROM Contacts WHERE UserID=? AND FirstName LIKE ? OR LastName LIKE ?");
+		$ContactName = "%" . $inData["Search"] . "%";
+		$stmt->bind_param("sss", $inData["UserID"], $ContactName, $ContactName);
 		$stmt->execute();
 		
 		$result = $stmt->get_result();
@@ -26,7 +28,7 @@
 				$searchResults .= ",";
 			}
 			$searchCount++;
-			$searchResults .= '"' . $row["FirstName"] . '"';
+			$searchResults .= '"' . $row["FirstName"] . " " . $row["LastName"] . '"';
 		}
 		
 		if( $searchCount == 0 )
