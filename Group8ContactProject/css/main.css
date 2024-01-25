@@ -109,7 +109,7 @@ body {
     opacity: 0.7;
 }
 
-.form__button:hover {
+.form__button:hover {   
     opacity: 1;
     transition: 0.5s;
 }
@@ -130,4 +130,11 @@ body {
 
 .form__link:hover {
     text-decoration: underline;
+}
+
+.form__button--logout {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: auto; /* Set width to auto to prevent stretching across the screen */
 }
