@@ -27,8 +27,7 @@ body {
 }
 
 .container,
-.form__input,
-.form__button {
+.form__title {
     font-family: 500 1rem 'Tourney', sans-serif;
     border: 'black';
     border-radius: var(--border-radius);
@@ -49,6 +48,7 @@ body {
 .form__title {
     margin-bottom: 2rem;
     text-align: center;
+
 }
 
 .form__message {
