@@ -16,6 +16,8 @@ body {
     background-size:auto;
 }
 
+/*The code below is for the main page title button*/
+
 .container {
     width: 400px;
     max-width: 400px;
@@ -33,67 +35,13 @@ body {
     border-radius: var(--border-radius);
 }
 
-.form--hidden {
-    display: none;
-}
-
-.form > *:first-child {
-    margin-top: 0;
-}
-
-.form > *:last-child {
-    margin-bottom: 0;
-}
-
 .form__title {
     margin-bottom: 2rem;
     text-align: center;
 
 }
 
-.form__message {
-    text-align: center;
-    margin-bottom: 1rem;
-}
-
-.form__message--success {
-    color: var(--color-success);
-}
-
-.form__message--error {
-    color: var(--color-error);
-}
-
-.form__input-group {
-    margin-bottom: 1rem;
-}
-
-.form__input {
-    display: block;
-    width: 100%;
-    padding: 0.75rem;
-    box-sizing: border-box;
-    border-radius: var(--border-radius);
-    border: 'black';
-    outline: auto;
-    background: #eeeeee;
-}
-
-.form__input:focus {
-    border-color: 'black';
-    background: #ffffff;
-}
-
-.form__input--error {
-    color: var(--color-error);
-    border-color: var(--color-error);
-}
-
-.form__input-error-message {
-    margin-top: 0.5rem;
-    font-size: 0.85rem;
-    color: var(--color-error);
-}
+/*The code below is for the logout button*/
 
 .form__button {
     width: 100%;
@@ -105,29 +53,6 @@ body {
     border-radius: var(--border-radius);
     border: 'black';
     outline: auto;
-}
-
-.form__button:hover {   
-    opacity: 1;
-    transition: 0.5s;
-}
-
-.form__button:active {
-    transform: scale(0.98);
-}
-
-.form__text {
-    text-align: center;
-}
-
-.form__link {
-    color: var(--color-secondary);
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.form__link:hover {
-    text-decoration: underline;
 }
 
 .form__button--logout {
