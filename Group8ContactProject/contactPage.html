@@ -12,13 +12,66 @@
 
     <body>
         <div class="container">
-            <h1 class="form__title" id="page_title">Contact Page</h1>
-        </div>
-        <div>
+            <h1 class="form__title" id="page_title">Logged in as [First Name] [Last Name]</h1>
             <button class="form__button form__button--logout" id="logoutButton">Logout</button>
+            <button class="form__button form__button--add-contact" id="addContactButton">Add Contact</button>
+            <div class="popup" id="addContactPopup">
+                <div class="popup-content">
+                    <span class="close" id="closePopup">&times;</span>
+                    <h2>Add New Contact</h2>
+                    <form id="addContactForm">
+                        <label for="firstName">First Name:</label>
+                        <input type="text" id="firstNameContact" name="firstName" required>
+            
+                        <label for="lastName">Last Name:</label>
+                        <input type="text" id="lastNameContact" name="lastName" required>
+            
+                        <label for="email">Email:</label>
+                        <input type="email" id="emailContact" name="email" required>
+            
+                        <button type="button" id="submitContact">Submit</button>
+                    </form>
+                </div>
+            </div>
+            <table class="contacts-table">
+                <thead>
+                    <tr>
+                        <th>Contact Name</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody id="contactsTable"></tbody>
+            </table>
         </div>
 
-        <script src="./js/contactPage.js"></script>
+        <div class="popup" id="editContactPopup">
+            <div class="popup-content">
+                <span class="close" id="closeEditPopup">&times;</span>
+                <h2>Edit Contact</h2>
+                <form id="editContactForm">
+                    <label for="editFirstName">First Name:</label>
+                    <input type="text" id="editFirstName" name="editFirstName" required>
         
+                    <label for="editLastName">Last Name:</label>
+                    <input type="text" id="editLastName" name="editLastName" required>
+        
+                    <label for="editEmail">Email:</label>
+                    <input type="email" id="editEmail" name="editEmail" required>
+        
+                    <button type="button" id="saveEditContact">Save Changes</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="popup" id="deleteContactPopup">
+            <div class="popup-content">
+                <span class="close" id="closeDeletePopup">&times;</span>
+                <h2>Are you sure?</h2>
+                <button type="button" id="confirmDeleteContact">Yes</button>
+                <button type="button" id="cancelDeleteContact">Cancel</button>
+            </div>
+        </div>
+    
+        <script src="./js/contactPage.js"></script>
     </body>
     </html>
