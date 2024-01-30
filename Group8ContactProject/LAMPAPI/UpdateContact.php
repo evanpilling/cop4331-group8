@@ -8,6 +8,8 @@
     $NewLastName = $inData["NewLastName"];
     $NewEmailAddress = $inData["NewEmailAddress"];
 
+    $UserID = $inData["UserID"];
+
     $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 
     if($conn->connect_error) 
@@ -16,7 +18,7 @@
     }
     else 
     {
-        $stmt = $conn->prepare("UPDATE Contacts SET FirstName='$NewFirstName', LastName='$NewLastName', Email='$NewEmailAddress' WHERE FirstName='$SelectedFirstName' AND LastName='$SelectedLastName'");
+        $stmt = $conn->prepare("UPDATE Contacts SET FirstName='$NewFirstName', LastName='$NewLastName', Email='$NewEmailAddress' WHERE FirstName='$SelectedFirstName' AND LastName='$SelectedLastName' AND UserID='$UserID'");
         $stmt->execute();
         $stmt->close();
         $conn->close();
