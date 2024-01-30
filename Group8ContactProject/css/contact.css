@@ -1,3 +1,10 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* font-family: 500 1rem 'Tourney', sans-serif; */
+}
+
 body {
     --color-primary: #009579;
     --color-primary-dark: #007f67;
@@ -6,68 +13,349 @@ body {
     --color-success: #4bb544;
     --border-radius: 4px;
 
-    margin: 0;
-    height: 100vh;
+    min-height: 100vh;
+    /* background: url(./Minion.png) no-repeat; */
+    background-size: cover;
+    background-position: center;
+
+    min-height: 100vh;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.3rem 5%;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .3);
+    backdrop-filter: blur(5px);
+    z-index: -1;
+}
+
+.header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .5), transparent);
+    transition: .5s;
+}
+
+.header:hover::after {
+    left: 100%;
+}
+
+.logo {
+    font-size: 2rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.navbar a {
+    font-size: 1.15rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 2.5rem;
+}
+
+#check {
+    display: none;
+}
+
+.icons {
+    position: absolute;
+    right: 5%;
+    font-size: 2.8rem;
+    color: #fff;
+    cursor: pointer;
+    display: none;
+}
+
+/* BREAKPOINTS */
+@media (max-width: 992px) {
+    .header {
+        padding: 1.3rem 5%;
+    }
+}
+
+@media (max-width: 768px) {
+    .icons {
+        display: inline-flex;
+    }
+
+    #check:checked~.icons #menu-icon {
+        display: none;
+    }
+
+    .icons #close-icon {
+        display: none;
+    }
+
+    #check:checked~.icons #close-icon {
+        display: block;
+    }
+
+    .navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background: rgba(0, 0, 0, .1);
+        backdrop-filter: blur(50px);
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+        overflow: hidden;
+        transition: .3s ease;
+    }
+    
+    #check:checked~.navbar {
+        height: 13rem;
+    }
+
+    .navbar a {
+        display: block;
+        font-size: 1.2rem;
+        margin: 1.5rem 0;
+        text-align: center;
+        transform: translateY(-50px);
+        opacity: 0;
+        transition: .3s ease;
+    }
+
+    #check:checked~.navbar a {
+        transform: translateY(0);
+        opacity: 1;
+        transition-delay: calc(.15s * var(--i));
+    }
+
+}
+
+.home__page {
+    display: flex;
+
+    /* The image used */
+    background: url(../images/background2.jpg);
+    /* background: rgb(43, 177, 86); */
+  
+    /* Set a specific height */
+    min-height: 100vh;
+  
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+/* --------------------------------------- Below is for contact database -------------------------------------------- */
+.container {
+    background: rgba(0, 0, 0, .1);
+    backdrop-filter: blur(10px);
+
+    border-radius: 10%;
+}
+
+h1#page_title {
+    padding: 2rem;
+}
+
+.contacts__container {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: white;
+    overflow: auto;
+}
+
+table.scroll {
+    width: 100%;
+    border-spacing: 0;
+    border: 1px solid black;
+ }
+     
+table.scroll tbody, table.scroll thead {
+    width: 100%;
+    display: block;
+}   
+
+thead tr th {
+    height: 3rem;
+    line-height: 3rem;
+    background: red;
+    color: white;
+}          
+
+table.scroll tbody {
+    height: 20rem; 
+    overflow-y: auto;
+    overflow-x: hidden; 
+}
+    
+tbody { 
+    border-top: 2px solid black;
+    background: orange;
+}
+    
+tbody td, thead th {
+    width : 200px;
+    border-right: 1px solid black;
+}
+
+td {
+    text-align:center;
+}
+
+table, th {
+    border-collapse: collapse;
+    border-spacing: 0;
+    max-height: 15rem;
+}
+
+td {
+    text-align: center;
+}
+
+.about__container {
+    display: flex;
+    padding: 0 35px;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
-    background: url(../images/background3.jpg);
-    background-size:auto;
+    min-height: 100vh;
+    background-image: url(/Group8ContactProject/images/Fiend.png);
+
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-/*The code below is for the main page title button*/
-
-.container {
-    width: 80%;
-    max-width: 800px;
-    margin: 1rem;
-    padding: 20rem;
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
-    border-radius: var(--border-radius);
-    background: #ffffff;
-    
+.wrapper {
+    max-width: 1100px;
+    width: 100%;
+    position: relative;
 }
 
-
-.form__title {
-    font-family: 500 1rem 'Tourney', sans-serif;
-    border: 'black';
-    border-radius: var(--border-radius);
+.wrapper i {
+    top: 50%;
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+    font-size: 1.25rem;
+    position: absolute;
+    text-align: center;
+    line-height: 50px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.23);
 }
 
-.form__title {
-    margin-bottom: 15rem;
+.wrapper .carousel{
+    display: flex;
+    gap: 2rem;
+    border-radius: 8px;
+}
+
+.carousel :where(.card, .img) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel .card {
+    scroll-snap-align: start;
+    height: 342px;
+    width: 12rem;
+    min-width: 10rem;
+    list-style: none;
+    background: #fff;
+    cursor: pointer;
+    padding-bottom: 15px;
+    flex-direction: column;
+    border-radius: 8px;
+    border: 3px solid rgb(10, 106, 10);
+}
+
+.carousel .card .img {
+    background: rgb(10, 106, 10);
+    height: 148px;
+    width: 148px;
+    border-radius: 50%;
+}
+
+.card .img img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #fff;
+}
+
+.carousel .card h2 {
+    font-weight: 500;
+    font-size: 1.56rem;
+    margin: 30px 0 5px;
+    text-align: center;
+}
+
+.carousel .card span {
+    color: #6A6D78;
+    font-size: 1.31rem;
     text-align: center;
 }
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .form__button {
     width: 100%;
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-    color: 'black';
-    cursor: pointer;
-    box-sizing: border-box;
-    border-radius: var(--border-radius);
-    border: 'black';
-    outline: auto;
+    height: 100%;
+    border: 2px solid white;
 }
 
-.form__button--logout {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    width: auto;
-}
-
-.form__button--add-contact {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    width: auto;
-}
+/* .form__button--add-contact {
+    border: 3px solid black;
+    background: white;
+} */
 
 .popup {
     display: none;
@@ -91,7 +379,6 @@ body {
     cursor: pointer;
 }
 
-
 .edit-contact-button,
 .delete-contact-button {
     padding: 8px;
@@ -102,6 +389,7 @@ body {
     color: #fff;
     border: none;
     border-radius: 4px;
+    display: inline-flex;
 }
 
 #editContactPopup,
@@ -109,3 +397,64 @@ body {
     display: none;
 }
 
+.more__options__button {
+    color: blue;
+    border: 2ps solid currentColor;
+    /* padding: 8px; */
+    /* margin-right: 5px; */
+    /* font-size: 12px; */
+    /* cursor: pointer; */
+    /* background-color: #ff0000; Adjust the color as needed */
+    /* color: #fff; */
+    /* border: none; */
+    /* border-radius: 4px; */
+    /* display: inline-flex; */
+}
+
+.more__options__button span {
+    background: currentColor;
+}
+
+.more__options__button span.red {
+    color: red;
+}
+
+.dropbtn {
+    background-color: white;
+    color: black;
+    padding: 9px;
+    font-size: 20px;
+    border-radius: 100rem;
+  }
+  
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {background-color: #ddd;}
+
+  
+  /* Change the background color of the dropdown button when the dropdown content is shown */
+  .dropdown:hover .dropbtn {background-color: #3e8e41;
+}
