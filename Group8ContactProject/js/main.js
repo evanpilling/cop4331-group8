@@ -83,6 +83,10 @@ document.addEventListener("DOMContentLoaded", () => {
         
                     window.location.href = "contactPage.html";
                 }
+                else
+                {
+                    setFormMessage(loginForm, "error", "Please enter a valid username and password.");
+                }
 
             };
             xhr.send(jsonPayload);
