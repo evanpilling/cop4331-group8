@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
             
                     if( userId < 1 )
                     {	
-                        document.getElementById("loginForm").innerHTML = "User/Password combination incorrect";
+                        setFormMessage(loginForm, "error", "Invalid username/password combination");
                         return;
                     }
             
@@ -83,19 +83,11 @@ document.addEventListener("DOMContentLoaded", () => {
         
                     window.location.href = "contactPage.html";
                 }
-                else
-                {
-                    setFormMessage(loginForm, "error", "Please enter a valid username and password.");
-                }
+
 
             };
             xhr.send(jsonPayload);
 
-            // Double check here to prevent giving error message in success cases since onreadystatechange()
-            // is called several times in one request
-            if (this.readyState == 4){ 
-                setFormMessage(loginForm, "error", "Invalid username/password combination");
-            }
         }
         catch(err)
         {
