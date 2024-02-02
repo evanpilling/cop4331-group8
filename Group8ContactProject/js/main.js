@@ -81,9 +81,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     saveCookie();
         
-                    window.location.href = "contactPage.html";
+                    window.location.href = "landingPage.html";
                 }
-
 
             };
             xhr.send(jsonPayload);
