@@ -78,13 +78,21 @@ body {
 
 .form__navbar a {
     margin: 0;
-    padding: 0;
+    padding-block: 1rem;
+    padding-inline: 1rem;
     box-sizing: border-box;
     font-size: 1.15rem;
     color: #fff;
     text-decoration: none;
     font-weight: 500;
-    margin-left: 2.5rem;
+
+    /* border: 2px solid red; */
+}
+
+.form__navbar a:hover {
+    color: black;
+    background: white;
+    border-radius: 5px;
 }
 
 #check {
@@ -144,7 +152,7 @@ body {
     }
 
     #check:checked~.form__navbar {
-        height: 14rem;
+        height: 22rem;
     }
 
     .form__navbar a {
@@ -262,21 +270,25 @@ body {
 .form__search__bar:hover {
     width: 360px;
     box-shadow: 1px 1px 20px white;
+    border: 1px solid black;
 }
 
 .form__search__bar .search__input {
     position: relative;
-    width: 300px;
+    width: 100%;
     height: 60px;
     /* left: -5px; */
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
     visibility: hidden;
+
+    padding-left: calc(7%);
 }
 
 .form__search__bar:hover .search__input {
     visibility: visible;
+    width: 100%;
 }
 
 .form__search__bar .search__input input {
@@ -556,7 +568,7 @@ div#contact__card {
 
 /* ----------------------------------------- Below: Section for Pop Ups -------------------------------------------------------- */
 .popup {
-    width: 400px;
+    width: 30%;
     color: #333;
     background: #fff;
     padding: 0 30px 30px;
