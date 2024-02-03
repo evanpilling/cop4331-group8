@@ -125,6 +125,15 @@ function getContacts(searchFor) {
 
 user__search.addEventListener("input", e => {
     getContacts(e.target.value);
+    
+    // let activeSearch = document.getElementById("search__bar__container");
+    
+    // if (e.target.value == "") {
+    //     activeSearch.style.width = "25px";
+    // }
+    // else {
+    //     activeSearch.style.width = "360px";
+    // }
 });
 
 // ================================================== Above: Search Bar ===================================================

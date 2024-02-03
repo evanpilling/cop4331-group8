@@ -54,9 +54,9 @@
                     <h3 id="page__title">Logged in as [First Name] [Last Name]</h3>
                 </div>
 
-                <div class="form__search__bar">
+                <div class="form__search__bar" id="search__bar__container">
                     <div class="search__icon"></div>
-                    <div class="search__input">
+                    <div class="search__input" id="search__input__id">
                         <input type="text" placeholder="Search" id="user__search">
                     </div>
                 </div>
@@ -190,25 +190,28 @@
         <div class="popup" id="popup">
             <img src="./images/add.jpg">
             <h2>Add New Contact</h2>
-            <p>
-                First Name:
+            <div class="add__first__name">
+                <p>First Name:</p>
                 <input id="first__name__input" type="text" placeholder="Rick">
-            </p>
-            <p>
-                Last Name:
+            </div>
+            <div class="add__last__name">
+                <p>Last Name:</p>
                 <input id="last__name__input" type="text" placeholder="Leinecker">
-            </p>
-            <p>
-                Email:
+            </div>
+            <div class="add__email">
+                <p>Email:</p>
                 <input id="email__input" type="text" placeholder="example@example.com">
-            </p>
-            <p>
-                Phone Number:
+            </div>
+            <div class="add__phone__number">
+                <p>Phone Number:</p>
                 <input id="phone__number__input" type="text" placeholder="(123) 456 789">
-            </p>
+            </div>
                 
             <!-- <p>Your details have been successfully submitted. Thanks!</p> -->
-            <button type="button" onclick="closePopup()">OK</button>
+            <div class="add__contact__buttons">
+                <button type="button" onclick="closePopup()">Submit</button>
+                <button type="button" onclick="closePopup()">Cancel</button>
+            </div>
         </div>
     </div>
 

@@ -291,6 +291,11 @@ body {
     width: 100%;
 }
 
+.active__input {
+    visibility: visible;
+    width: 100%;
+}
+
 .form__search__bar .search__input input {
     position: absolute;
     top: 0;
@@ -568,7 +573,7 @@ div#contact__card {
 
 /* ----------------------------------------- Below: Section for Pop Ups -------------------------------------------------------- */
 .popup {
-    width: 30%;
+    width: 50%;
     color: #333;
     background: #fff;
     padding: 0 30px 30px;
@@ -606,8 +611,7 @@ div#contact__card {
 }
 
 .popup button {
-    width: 100%;
-    margin-top: 50px;
+    width: 40%;
     padding: 10px 0;
     background: #6fd649;
     color: #fff;
@@ -617,4 +621,22 @@ div#contact__card {
     border-radius: 4px;
     cursor: pointer;
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.pop_container p {
+    color: red;
+}
+
+
+.pop_container input {
+    margin: auto;
+    border: 1px solid black;
+}
+
+.add__contact__buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 2rem;
 }
