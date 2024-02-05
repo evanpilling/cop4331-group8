@@ -4,7 +4,7 @@ const extension = 'php';
 
 
 // =============================================== Below: Var Initalization ===============================================
-let search = "e";
+let search = "";
 let firstName = "";
 let lastName = "";
 
