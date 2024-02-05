@@ -70,7 +70,8 @@ function getContacts(searchFor) {
     let tmp = { UserID: userId, Search: searchFor };
     let jsonPayload = JSON.stringify(tmp);
 
-    let searchName = "";
+    let searchFirstName = "";
+    let searchLastName = "";
     let searchEmail = "";
 
     let xhr = new XMLHttpRequest();
