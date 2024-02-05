@@ -17,7 +17,7 @@ body {
     --color-secondary: #252c6a;
     --color-error: #cc3333;
     --color-success: #4bb544;
-    --border-radius: 4px;
+    --border-radius: 5px;
 
     min-height: 100vh;
     background-size: cover;
@@ -229,7 +229,7 @@ body {
     max-width: 100rem;
 
     width: 75rem;
-    border-radius: 25px;
+    border-radius: var(--border-radius);
     border: 3px solid rgba(105, 104, 104, 0.212);
 
     max-height: 40rem;
@@ -357,7 +357,7 @@ body {
     scrollbar-width: thin;
     width: 90%;
 
-    border-radius: 25px;
+    border-radius: var(--border-radius);
     background-color: white;
 }
 
@@ -442,7 +442,7 @@ button#delete__button:hover {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     gap: 2.9rem;
-    border-radius: 8px;
+    border-radius: var(--border-radius);
     scroll-behavior: smooth;
     scrollbar-width: none;
 }
@@ -479,7 +479,7 @@ button#delete__button:hover {
     cursor: pointer;
     padding-bottom: 15px;
     flex-direction: column;
-    border-radius: 8px;
+    border-radius: var(--border-radius);
     width: 80%;
 }
 
@@ -563,7 +563,7 @@ div#contact__card {
     max-width: 20rem;
     margin: 1rem;
     padding: 1rem;
-    border-radius: 15px;
+    border-radius: var(--border-radius);
     background: rgba(0, 0, 0, 0.386);
     backdrop-filter: blur(50px);
     box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.635);
@@ -585,7 +585,7 @@ div#contact__card {
 .pop_container input {
     display: flex;
     padding-left: 5px;
-    border-radius: 5px;
+    border-radius: var(--border-radius);
     border: 1px solid black;
 }
 
@@ -596,7 +596,7 @@ div#contact__card {
     border: 0;
     outline: none;
     font-size: 18px;
-    border-radius: 4px;
+    border-radius: var(--border-radius);
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.797);
 }
@@ -609,7 +609,7 @@ div#contact__card {
     background: #fff;
     padding: 0 30px 30px;
 
-    border-radius: 6px;
+    border-radius: var(--border-radius);
     border: 2px solid black;
     position: fixed;
     text-align: center;
