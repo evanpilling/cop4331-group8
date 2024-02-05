@@ -64,6 +64,7 @@ body {
 
 .form__input-group {
     margin-bottom: 1rem;
+    font-weight: bold;
 }
 
 .form__input {
