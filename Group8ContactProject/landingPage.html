@@ -74,7 +74,7 @@
                                 <th>Email</th>
                                 <th style="width: 10%; text-align: center;">
                                     <button class="bi bi-person-fill-add" id="add__button"
-                                        onclick="openPopup()"></button>
+                                        onclick="openAddPopup()"></button>
                                 </th>
                             </tr>
                         </thead>
@@ -187,8 +187,8 @@
 
     <!--  -------------------------- Below: Pop Ups -------------------------- -->
     <div class="pop_container">
-        <div class="popup" id="popup">
-            <img src="./images/add.jpg">
+        <div class="add__popup" id="add__popup">
+            <img src="./images/add.png">
             <h2>Add New Contact</h2>
             <div class="add__first__name">
                 <p>First Name:</p>
@@ -209,8 +209,35 @@
                 
             <!-- <p>Your details have been successfully submitted. Thanks!</p> -->
             <div class="add__contact__buttons">
-                <button type="button" onclick="closePopup()">Submit</button>
-                <button type="button" onclick="closePopup()">Cancel</button>
+                <button type="button" onclick="submitAndClosePopup()">Submit</button>
+                <button type="button" onclick="closeAddPopup()">Cancel</button>
+            </div>
+        </div>
+
+        <div class="edit__popup" id="edit__popup">
+            <img src="./images/edit.png">
+            <h2>Edit Contact</h2>
+            <div class="edit__first__name">
+                <p>First Name:</p>
+                <input id="edit__first__name__input" type="text" placeholder="Loading...">
+            </div>
+            <div class="edit__last__name">
+                <p>Last Name:</p>
+                <input id="edit__last__name__input" type="text" placeholder="Loading...">
+            </div>
+            <div class="edit__email">
+                <p>Email:</p>
+                <input id="edit__email__input" type="text" placeholder="Loading...">
+            </div>
+            <div class="edit__phone__number">
+                <p>Phone Number:</p>
+                <input id="edit__phone__number__input" type="text" placeholder="Loading...">
+            </div>
+                
+            <!-- <p>Your details have been successfully submitted. Thanks!</p> -->
+            <div class="edit__contact__buttons">
+                <button type="button" onclick="editAndClosePopup()">Submit</button>
+                <button type="button" onclick="closeEditPopup()">Cancel</button>
             </div>
         </div>
     </div>

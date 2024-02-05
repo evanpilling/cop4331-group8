@@ -572,7 +572,25 @@ div#contact__card {
 
 
 /* ----------------------------------------- Below: Section for Pop Ups -------------------------------------------------------- */
-.popup {
+.pop_container p {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    color: rgb(0, 0, 0);
+}
+
+
+.pop_container input {
+    display: flex;
+    padding-left: 5px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+.add__popup,
+.edit__popup {
     width: 50%;
     color: #333;
     background: #fff;
@@ -591,28 +609,35 @@ div#contact__card {
     transition: transform 0.4s, top 0.4s;
 }
 
-.open-popup {
-    top: 50%;
-    visibility: visible;
-    transform: translate(-50%, -50%) scale(1);
-}
-
-.popup img {
+.add__popup img {
     width: 100px;
     margin-top: -50px;
     border-radius: 50%;
+    background: #6fd649;
+    border: 10px solid #6fd649;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.797);
 }
 
-.popup h2 {
+.edit__popup img {
+    width: 100px;
+    padding: 20px;
+    margin-top: -50px;
+    border-radius: 50%;
+    background: #6fd649;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.797);
+}
+
+.add__popup h2,
+.edit__popup h2 {
     font-size: 38px;
     font-weight: 500;
     margin: 30px 0 10px;
 }
 
-.popup button {
-    width: 40%;
-    padding: 10px 0;
+.add__popup button,
+.edit__popup button {
+    width: 30%;
+    padding: 10px;
     background: #6fd649;
     color: #fff;
     border: 0;
@@ -620,23 +645,36 @@ div#contact__card {
     font-size: 18px;
     border-radius: 4px;
     cursor: pointer;
-    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.797);
 }
 
-.pop_container p {
-    color: red;
-}
-
-
-.pop_container input {
-    margin: auto;
-    border: 1px solid black;
-}
-
-.add__contact__buttons {
+.add__contact__buttons,
+.edit__contact__buttons {
     display: flex;
     align-items: center;
     justify-content: center;
-
+    
     gap: 2rem;
+}
+
+.add__first__name,
+.add__last__name,
+.add__email,
+.add__phone__number,
+.edit__first__name,
+.edit__last__name,
+.edit__email,
+.edit__phone__number {
+    padding-inline: 10%;
+    margin-block: 5%;
+    
+    display: flex;
+    justify-content: space-between;
+}
+
+.open-popup {
+    top: 50%;
+    max-width: 35rem;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
 }

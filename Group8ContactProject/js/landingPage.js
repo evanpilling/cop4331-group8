@@ -101,7 +101,7 @@ function getContacts(searchFor) {
 						<td style="vertical-align: middle;">${searchEmail}</td>
 						<td style="vertical-align: middle;">${searchEmail}</td>
                         <td style="text-align: center; vertical-align: middle">
-                            <button class="bi bi-pencil-square" id="edit__button"></button>
+                            <button class="bi bi-pencil-square" id="edit__button" onclick="openEditPopup()""></button>
                             <button class="bi bi-trash3" id="delete__button"></button>
                         </td>
 					`;
@@ -226,18 +226,41 @@ wrapper.addEventListener("mouseleave", autoPlay);
 // =================================================== Above: Carousel ====================================================
 
 
-let popup = document.getElementById("popup");
+let addPopup = document.getElementById("add__popup");
+let editPopup = document.getElementById("edit__popup");
 
-function openPopup() {
-    popup.classList.add("open-popup");
+function openAddPopup() {
+    addPopup.classList.add("open-popup");
 }
 
-function closePopup() {
-    popup.classList.remove("open-popup");
+function openEditPopup() {
+    editPopup.classList.add("open-popup");
+
+    // Change placeholder for inputs to be asscociated
+    // first, last, phone number, and email
 }
 
 
+function submitAndClosePopup() {
+    addPopup.classList.remove("open-popup");
+}
 
+function editAndClosePopup() {
+    // Update changed information
+    // Any unchagned information should not be blank
+
+    editPopup.classList.remove("open-popup");
+}
+
+// (Add Popup) Information not changed, only close popup
+function closeAddPopup() {
+    addPopup.classList.remove("open-popup");
+}
+
+// (Edit Popup) Information not changed, only close popup
+function closeEditPopup() {
+    editPopup.classList.remove("open-popup");
+}
 
 
 // =============================================== BELOW: OLD BUTTONS CODE ================================================
