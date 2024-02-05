@@ -210,7 +210,7 @@
             <!-- <p>Your details have been successfully submitted. Thanks!</p> -->
             <div class="add__contact__buttons">
                 <button type="button" onclick="submitAndClosePopup()">Submit</button>
-                <button type="button" onclick="closeAddPopup()">Cancel</button>
+                <button type="button" class="cancel__button" onclick="closeAddPopup()">Cancel</button>
             </div>
         </div>
 
@@ -237,7 +237,17 @@
             <!-- <p>Your details have been successfully submitted. Thanks!</p> -->
             <div class="edit__contact__buttons">
                 <button type="button" onclick="editAndClosePopup()">Submit</button>
-                <button type="button" onclick="closeEditPopup()">Cancel</button>
+                <button type="button" class="cancel__button" onclick="closeEditPopup()">Cancel</button>
+            </div>
+        </div>
+
+        <div class="delete__popup" id="delete__popup">
+            <img src="./images/delete.png">
+            <h2>Delete Contact</h2>
+            <p>Are you sure you want to delete this contact?</p>
+            <div class="delete__contact__buttons">
+                <button type="button" onclick="deleteAndClosePopup()">Delete</button>
+                <button type="button" class="cancel__button" onclick="closeDeletePopup()">Cancel</button>
             </div>
         </div>
     </div>

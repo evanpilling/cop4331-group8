@@ -68,7 +68,6 @@ function getContacts(searchFor) {
     let url = urlBase + '/SearchContact.' + extension;
 
     let tmp = { UserID: userId, Search: searchFor };
-    console.log(tmp + " hello");
     let jsonPayload = JSON.stringify(tmp);
 
     let searchName = "";
@@ -89,20 +88,21 @@ function getContacts(searchFor) {
                 jsonObject.results.forEach(results => {
                     // Split obtained result by space FirstName LastName Email
                     tempResult = results.split(' ');
-                    searchName = tempResult[0] + " " + tempResult[1];
+                    searchFirstName = tempResult[0];
+                    searchLastName = tempResult[1];
                     searchEmail = tempResult[2];
                     console.log(results);
                     
                     const row = document.createElement('tr');
                     // Second searchEmail is temp for phone numbers
                     row.innerHTML = `
-						<td style="vertical-align: middle;">${searchName}</td>
-                        <td style="vertical-align: middle;">${searchName}</td>
+						<td style="vertical-align: middle;">${searchFirstName}</td>
+                        <td style="vertical-align: middle;">${searchLastName}</td>
 						<td style="vertical-align: middle;">${searchEmail}</td>
 						<td style="vertical-align: middle;">${searchEmail}</td>
                         <td style="text-align: center; vertical-align: middle">
-                            <button class="bi bi-pencil-square" id="edit__button" onclick="openEditPopup()""></button>
-                            <button class="bi bi-trash3" id="delete__button"></button>
+                            <button class="bi bi-pencil-square" id="edit__button" onclick="openEditPopup('${searchFirstName}', '${searchLastName}', '${searchEmail}')"></button>
+                            <button class="bi bi-trash3" id="delete__button" onclick="openDeletePopup('${searchFirstName}', '${searchLastName}')"></button>
                         </td>
 					`;
 
@@ -225,31 +225,138 @@ wrapper.addEventListener("mouseenter", () => clearTimeout(timeoutId));
 wrapper.addEventListener("mouseleave", autoPlay);
 // =================================================== Above: Carousel ====================================================
 
-
+// =================================================== Below: Popups ====================================================
 let addPopup = document.getElementById("add__popup");
 let editPopup = document.getElementById("edit__popup");
+let deletePopup = document.getElementById("delete__popup");
 
 function openAddPopup() {
     addPopup.classList.add("open-popup");
 }
 
-function openEditPopup() {
+function openEditPopup(contactFirstName, contactLastName, contactEmail) {
+    tableFirstName = contactFirstName;
+    tableLastName = contactLastName;
+
+    document.getElementById('edit__first__name__input').value = tableFirstName;
+    document.getElementById('edit__last__name__input').value = tableLastName;
+    document.getElementById('edit__email__input').value = contactEmail;
+    document.getElementById('edit__phone__number__input').value = contactEmail;
+
     editPopup.classList.add("open-popup");
 
     // Change placeholder for inputs to be asscociated
     // first, last, phone number, and email
 }
 
+function openDeletePopup(contactFirstName, contactLastname) {
+    tableFirstName = contactFirstName;
+    tableLastName = contactLastname;
+
+    deletePopup.classList.add("open-popup");
+}
 
 function submitAndClosePopup() {
+    let contactFName = document.getElementById("first__name__input").value;
+    let contactLName = document.getElementById("last__name__input").value;
+    let contactEmail = document.getElementById("email__input").value;
+    let contactID = userId;
+
+
+    let tmp = {FirstName:contactFName,LastName:contactLName,Email:contactEmail,UserID:contactID};
+    let jsonPayload = JSON.stringify( tmp );
+
+    let url = urlBase + '/AddContact.' + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try
+    {
+        xhr.onreadystatechange = function() 
+        {
+            if (this.readyState == 4 && this.status == 200) 
+            {
+                getContacts(search);
+            }
+
+        };
+        xhr.send(jsonPayload);
+
+    }
+    catch(err)
+    {
+        console.error(err.message);
+    }
+
     addPopup.classList.remove("open-popup");
 }
 
 function editAndClosePopup() {
     // Update changed information
     // Any unchagned information should not be blank
+    let newFirstName = document.getElementById('edit__first__name__input').value;
+    let newLastName = document.getElementById('edit__last__name__input').value;
+    let newEmailAddress = document.getElementById('edit__email__input').value;
+
+ 	let tmp = {UserID:userId, SelectedFirstName:tableFirstName, SelectedLastName:tableLastName, NewFirstName:newFirstName, NewLastName:newLastName, NewEmailAddress:newEmailAddress};
+ 	let jsonPayload = JSON.stringify( tmp );
+	
+ 	let url = urlBase + '/UpdateContact.' + extension;
+
+ 	let xhr = new XMLHttpRequest();
+ 	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+ 	{
+ 		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+ 			{
+ 				getContacts(search);
+ 			}
+ 		};
+        
+ 		xhr.send(jsonPayload);
+
+ 	}
+ 	catch(err)
+	{
+		console.error(err.message);
+ 	}
+
 
     editPopup.classList.remove("open-popup");
+}
+
+function deleteAndClosePopup() {
+    let tmp = {UserID:userId,FirstName:tableFirstName,LastName:tableLastName};
+	let jsonPayload = JSON.stringify( tmp );
+
+	let url = urlBase + '/DeleteContact.' + extension;
+
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				getContacts(search);
+			}
+
+		};
+		xhr.send(jsonPayload);
+
+	}
+	catch(err)
+	{
+		console.error(err.message);
+	}
+
+    deletePopup.classList.remove("open-popup");
 }
 
 // (Add Popup) Information not changed, only close popup
@@ -262,126 +369,8 @@ function closeEditPopup() {
     editPopup.classList.remove("open-popup");
 }
 
+function closeDeletePopup() {
+    deletePopup.classList.remove("open-popup");
+}
 
-// =============================================== BELOW: OLD BUTTONS CODE ================================================
-
-
-// document.getElementById('addContactButton').addEventListener('click', function() {
-//     document.getElementById('addContactPopup').style.display = 'block';
-// });
-
-// document.getElementById('closePopup').addEventListener('click', function() {
-//     document.getElementById('addContactPopup').style.display = 'none';
-// });
-
-// document.getElementById('submitContact').addEventListener('click', function() {
-
-//     document.getElementById('addContactPopup').style.display = 'none';
-// });
-
-
-
-// document.getElementById('contactsTable').addEventListener('click', function(event) {
-//     if (event.target.classList.contains('edit-contact-button')) {
-//         document.getElementById('editContactPopup').style.display = 'block';
-		
-//     } else if (event.target.classList.contains('delete-contact-button')) {
-//         document.getElementById('deleteContactPopup').style.display = 'block';
-//     }
-
-// 	const selectedRow = event.target.closest('tr');
-//     const contactName = selectedRow.querySelector('td:first-child').textContent;
-
-//     [tableFirstName, tableLastName] = contactName.split(' ');
-// });
-
-
-
-// document.getElementById('closeEditPopup').addEventListener('click', function() {
-//     document.getElementById('editContactPopup').style.display = 'none';
-// });
-
-// document.getElementById('closeDeletePopup').addEventListener('click', function() {
-//     document.getElementById('deleteContactPopup').style.display = 'none';
-// });
-
-// document.getElementById('cancelDeleteContact').addEventListener('click', function() {
-//     document.getElementById('deleteContactPopup').style.display = 'none';
-// });
-
-// document.getElementById('confirmDeleteContact').addEventListener('click', function() {
-// 	deleteContact(tableFirstName, tableLastName);
-//     document.getElementById('deleteContactPopup').style.display = 'none';
-// });
-
-// document.getElementById('saveEditContact').addEventListener('click', function() {
-//     const editedFirstName = document.getElementById('editFirstName').value;
-//     const editedLastName = document.getElementById('editLastName').value;
-//     const editedEmail = document.getElementById('editEmail').value;
-
-// 	editContact(tableFirstName, tableLastName, editedFirstName, editedLastName, editedEmail);
-
-//     document.getElementById('editContactPopup').style.display = 'none';
-// });
-
-// function editContact(editFirstName, editLastName, newFirstName, newLastName, newEmailAddress){
-
-
-
-// 	let tmp = {UserID:userId,SelectedFirstName:editFirstName,SelectedLastName:editLastName,NewFirstName:newFirstName, NewLastName:newLastName, NewEmailAddress:newEmailAddress};
-// 	let jsonPayload = JSON.stringify( tmp );
-	
-// 	let url = urlBase + '/UpdateContact.' + extension;
-
-// 	let xhr = new XMLHttpRequest();
-// 	xhr.open("POST", url, true);
-// 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-// 	try
-// 	{
-// 		xhr.onreadystatechange = function() 
-// 		{
-// 			if (this.readyState == 4 && this.status == 200) 
-// 			{
-// 				getContacts(search);
-// 			}
-
-// 		};
-// 		xhr.send(jsonPayload);
-
-// 	}
-// 	catch(err)
-// 	{
-// 		console.error(err.message);
-// 	}
-// document.getElementById('addContactPopup').style.display = 'none';	
-// }
-
-// function deleteContact(deleteFirstName, deleteLastName){
-
-// 	let tmp = {UserID:userId,FirstName:deleteFirstName,LastName:deleteLastName};
-// 	let jsonPayload = JSON.stringify( tmp );
-	
-// 	let url = urlBase + '/DeleteContact.' + extension;
-
-// 	let xhr = new XMLHttpRequest();
-// 	xhr.open("POST", url, true);
-// 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-// 	try
-// 	{
-// 		xhr.onreadystatechange = function() 
-// 		{
-// 			if (this.readyState == 4 && this.status == 200) 
-// 			{
-// 				getContacts(search);
-// 			}
-
-// 		};
-// 		xhr.send(jsonPayload);
-
-// 	}
-// 	catch(err)
-// 	{
-// 		console.error(err.message);
-// 	}
-// }
 

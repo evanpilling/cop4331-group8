@@ -589,6 +589,19 @@ div#contact__card {
     border: 1px solid black;
 }
 
+.pop_container button {
+    width: 30%;
+    padding: 10px;
+    color: #fff;
+    border: 0;
+    outline: none;
+    font-size: 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.797);
+}
+
+.delete__popup,
 .add__popup,
 .edit__popup {
     width: 50%;
@@ -627,29 +640,47 @@ div#contact__card {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.797);
 }
 
+.delete__popup img {
+    width: 100px;
+    padding: 20px;
+    margin-top: -50px;
+    border-radius: 50%;
+    background: #ff0000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.797);
+}
+
 .add__popup h2,
-.edit__popup h2 {
+.edit__popup h2,
+.delete__popup h2 {
     font-size: 38px;
     font-weight: 500;
     margin: 30px 0 10px;
 }
 
+.delete__popup p {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
 .add__popup button,
 .edit__popup button {
-    width: 30%;
-    padding: 10px;
     background: #6fd649;
-    color: #fff;
-    border: 0;
-    outline: none;
-    font-size: 18px;
-    border-radius: 4px;
-    cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.797);
+}
+
+.delete__popup button {
+    background: #e70000;
+}
+
+.add__popup .cancel__button,
+.edit__popup .cancel__button,
+.delete__popup .cancel__button {
+    background: #f8f4fc;
+    color: #000000;
 }
 
 .add__contact__buttons,
-.edit__contact__buttons {
+.edit__contact__buttons,
+.delete__contact__buttons {
     display: flex;
     align-items: center;
     justify-content: center;
