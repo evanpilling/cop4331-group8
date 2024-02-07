@@ -87,22 +87,21 @@ function getContacts(searchFor) {
                 console.log(jsonObject);
 
                 jsonObject.results.forEach(results => {
-                    // Split obtained result by space FirstName LastName Email
+                    // Split obtained result by space FirstName LastName Email Phone
                     tempResult = results.split(' ');
                     searchFirstName = tempResult[0];
                     searchLastName = tempResult[1];
                     searchEmail = tempResult[2];
-                    console.log(results);
+                    searchPhoneNumber = tempResult[3];
                     
                     const row = document.createElement('tr');
-                    // Second searchEmail is temp for phone numbers
                     row.innerHTML = `
 						<td style="vertical-align: middle;">${searchFirstName}</td>
                         <td style="vertical-align: middle;">${searchLastName}</td>
-						<td style="vertical-align: middle;">${searchEmail}</td>
+						<td style="vertical-align: middle;">${searchPhoneNumber}</td>
 						<td style="vertical-align: middle;">${searchEmail}</td>
                         <td style="text-align: center; vertical-align: middle">
-                            <button class="bi bi-pencil-square" id="edit__button" onclick="openEditPopup('${searchFirstName}', '${searchLastName}', '${searchEmail}')"></button>
+                            <button class="bi bi-pencil-square" id="edit__button" onclick="openEditPopup('${searchFirstName}', '${searchLastName}', '${searchEmail}', '${searchPhoneNumber}')"></button>
                             <button class="bi bi-trash3" id="delete__button" onclick="openDeletePopup('${searchFirstName}', '${searchLastName}')"></button>
                         </td>
 					`;
@@ -126,15 +125,6 @@ function getContacts(searchFor) {
 
 user__search.addEventListener("input", e => {
     getContacts(e.target.value);
-    
-    // let activeSearch = document.getElementById("search__bar__container");
-    
-    // if (e.target.value == "") {
-    //     activeSearch.style.width = "25px";
-    // }
-    // else {
-    //     activeSearch.style.width = "360px";
-    // }
 });
 
 // ================================================== Above: Search Bar ===================================================
@@ -235,14 +225,14 @@ function openAddPopup() {
     addPopup.classList.add("open-popup");
 }
 
-function openEditPopup(contactFirstName, contactLastName, contactEmail) {
+function openEditPopup(contactFirstName, contactLastName, contactEmail, contactPhoneNumber) {
     tableFirstName = contactFirstName;
     tableLastName = contactLastName;
 
     document.getElementById('edit__first__name__input').value = tableFirstName;
     document.getElementById('edit__last__name__input').value = tableLastName;
     document.getElementById('edit__email__input').value = contactEmail;
-    document.getElementById('edit__phone__number__input').value = contactEmail;
+    document.getElementById('edit__phone__number__input').value = contactPhoneNumber;
 
     editPopup.classList.add("open-popup");
 
@@ -261,10 +251,11 @@ function submitAndClosePopup() {
     let contactFName = document.getElementById("first__name__input").value;
     let contactLName = document.getElementById("last__name__input").value;
     let contactEmail = document.getElementById("email__input").value;
+    let contactPhoneNumber = document.getElementById("phone__number__input").value;
     let contactID = userId;
 
 
-    let tmp = {FirstName:contactFName,LastName:contactLName,Email:contactEmail,UserID:contactID};
+    let tmp = {FirstName:contactFName,LastName:contactLName,Email:contactEmail,Phone:contactPhoneNumber,UserID:contactID};
     let jsonPayload = JSON.stringify( tmp );
 
     let url = urlBase + '/AddContact.' + extension;
@@ -299,8 +290,9 @@ function editAndClosePopup() {
     let newFirstName = document.getElementById('edit__first__name__input').value;
     let newLastName = document.getElementById('edit__last__name__input').value;
     let newEmailAddress = document.getElementById('edit__email__input').value;
+    let newPhoneNumber = document.getElementById('edit__phone__number__input').value;
 
- 	let tmp = {UserID:userId, SelectedFirstName:tableFirstName, SelectedLastName:tableLastName, NewFirstName:newFirstName, NewLastName:newLastName, NewEmailAddress:newEmailAddress};
+ 	let tmp = {UserID:userId, SelectedFirstName:tableFirstName, SelectedLastName:tableLastName, NewFirstName:newFirstName, NewLastName:newLastName, NewEmailAddress:newEmailAddress, NewPhoneNumber:newPhoneNumber};
  	let jsonPayload = JSON.stringify( tmp );
 	
  	let url = urlBase + '/UpdateContact.' + extension;

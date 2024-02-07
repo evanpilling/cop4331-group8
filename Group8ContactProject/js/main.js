@@ -111,6 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const registerFirstName = document.getElementById("signupFirstName").value;
         const registerLastName = document.getElementById("signupLastName").value;
         const registerUsername = document.getElementById("signupUsername").value;
+        const registerEmail = document.getElementById("signupEmail").value;
         const registerPassword = document.getElementById("signupPassword").value;
         const confirmPassword = document.getElementById("confirmPassword").value;
     
@@ -123,7 +124,8 @@ document.addEventListener("DOMContentLoaded", () => {
             FirstName: registerFirstName,
             LastName: registerLastName,
             Login: registerUsername,
-            Password: registerPassword
+            Password: registerPassword,
+            Email: registerEmail
         };
         
         let jsonPayload = JSON.stringify(tmp);

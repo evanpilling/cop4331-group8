@@ -31,7 +31,7 @@
 				$searchResults .= ",";
 			}
 			$searchCount++;
-			$searchResults .= '"' . $row["FirstName"] . " " . $row["LastName"] . " " . $row["Email"] . '"';
+			$searchResults .= '"' . $row["FirstName"] . " " . $row["LastName"] . " " . $row["Email"] . " " . $row["Phone"] .'"';
 		}
 		
 		if( $searchCount == 0 )

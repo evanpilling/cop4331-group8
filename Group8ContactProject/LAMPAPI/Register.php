@@ -6,6 +6,7 @@
 	$Login = $inData["Login"];
 	$Password = $inData["Password"];
 	$Email = $inData["Email"];
+	$HashedPassword = password_hash($Password, PASSWORD_DEFAULT, array("cost" => 10));
 
 	// Establishes connection to MySQL database
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
@@ -16,7 +17,7 @@
 	else
 	{
 		$stmt = $conn->prepare("INSERT into Users (FirstName, LastName, Login, Password, Email) VALUES(?,?,?,?,?)");
-		$stmt->bind_param("sssss", $FirstName, $LastName, $Login, $Password, $Email);
+		$stmt->bind_param("sssss", $FirstName, $LastName, $Login, $HashedPassword, $Email);
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();

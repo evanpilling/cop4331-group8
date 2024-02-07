@@ -51,6 +51,7 @@ body {
     z-index: -1;
 }
 
+
 .header::after {
     content: '';
     position: absolute;
@@ -60,6 +61,7 @@ body {
     height: 100%;
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .5), transparent);
     transition: .5s;
+    pointer-events: none;
 }
 
 .header:hover::after {
@@ -259,8 +261,8 @@ body {
 
 .form__search__bar {
     position: relative;
-    width: 25px;
-    height: 25px;
+    width: 35px;
+    height: 35px;
     background: #fff;
     border-radius: 60px;
     transition: 0.5s;
@@ -310,8 +312,8 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    width: 15px;
-    height: 15px;
+    width: 25px;
+    height: 25px;
     border-radius: 60px;
     display: flex;
     justify-content: center;
@@ -363,6 +365,10 @@ body {
 
 thead#form__table__header th {
     background-color: rgb(135, 144, 149);
+}
+
+.table-hover {
+    font-size: 19px;
 }
 
 .table th {
@@ -601,7 +607,24 @@ div#contact__card {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.797);
 }
 
-.delete__popup,
+.delete__popup {
+    width: 50%;
+    color: #333;
+    background: #fff;
+    padding: 0 30px 30px;
+
+    border-radius: var(--border-radius);
+    border: 2px solid black;
+    position: fixed;
+    text-align: center;
+
+    top: 0;
+    left: 50%;
+
+    visibility: hidden;
+}
+
+
 .add__popup,
 .edit__popup {
     width: 50%;
