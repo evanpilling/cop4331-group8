@@ -99,7 +99,7 @@ body {
     width: 100%;
     padding: 1rem 2rem;
     font-weight: bold;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     color: #ffffff;
     border: none;
     border-radius: var(--border-radius);
@@ -131,4 +131,16 @@ body {
 
 .form__link:hover {
     text-decoration: underline;
+}
+
+.overlay {
+    top: 1rem;
+    left: 1rem;
+    transform: scale(.1);
+    position: fixed;
+    display: block;
+    height: auto;
+    width: .2rem;
+    height: .2rem;
+
 }
