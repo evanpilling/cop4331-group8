@@ -7,6 +7,7 @@
 	
 	$Search = $inData["Search"];
 	$UserID = $inData["UserID"];
+	$Index = $inData["Index"] + 10;
 
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 
@@ -16,9 +17,9 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("SELECT * FROM Contacts WHERE (UserID=? AND CONCAT(FirstName, ' ', LastName) LIKE ?)");
+		$stmt = $conn->prepare("SELECT * FROM Contacts WHERE (UserID=? AND CONCAT(FirstName, ' ', LastName) LIKE ?) LIMIT ?");
 		$ContactName = "%" . $inData["Search"] . "%";
-		$stmt->bind_param("ss", $UserID, $ContactName);
+		$stmt->bind_param("ssi", $UserID, $ContactName, $Index);
 		// , $ContactName, $ContactName
 		$stmt->execute();
 		
