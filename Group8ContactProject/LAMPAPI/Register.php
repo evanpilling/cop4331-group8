@@ -16,12 +16,26 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("INSERT into Users (FirstName, LastName, Login, Password, Email) VALUES(?,?,?,?,?)");
-		$stmt->bind_param("sssss", $FirstName, $LastName, $Login, $HashedPassword, $Email);
-		$stmt->execute();
-		$stmt->close();
-		$conn->close();
-		returnWithError("");
+        $checkStmt = $conn->prepare("SELECT * FROM Users WHERE Login = ?");
+        $checkStmt->bind_param("s", $Login);
+        $checkStmt->execute();
+        $checkResult = $checkStmt->get_result();
+
+		if ($checkResult->num_rows > 0) {
+			$checkStmt->close();
+			returnWithError("Login already exists");
+		}
+		else {
+			$stmt = $conn->prepare("INSERT into Users (FirstName, LastName, Login, Password, Email) VALUES(?,?,?,?,?)");
+			$stmt->bind_param("sssss", $FirstName, $LastName, $Login, $HashedPassword, $Email);
+			$stmt->execute();
+			$stmt->close();
+			$checkStmt->close();
+			$conn->close();
+			returnWithError("");
+		}
+	
+		
 	}
 
 	function getRequestInfo()

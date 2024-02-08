@@ -94,20 +94,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     document.querySelectorAll(".form__input").forEach(inputElement => {
-        inputElement.addEventListener("blur", e => {
-            if (e.target.id === "signupUsername" && e.target.value.length > 0 && e.target.value.length < 6) {
-                setInputError(inputElement, "Username must be at least 6 characters in length")
-            }
-        });
-
         inputElement.addEventListener("input", e => {
             clearInputError(inputElement);
         });
     });
     
     createAccountForm.addEventListener("submit", e => {
+        
         e.preventDefault();
-    
+        if (!validateInput()) {
+            return;
+        }
         const registerFirstName = document.getElementById("signupFirstName").value;
         const registerLastName = document.getElementById("signupLastName").value;
         const registerUsername = document.getElementById("signupUsername").value;
@@ -140,6 +137,10 @@ document.addEventListener("DOMContentLoaded", () => {
             xhr.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     let jsonObject = JSON.parse(xhr.responseText);
+                    if (jsonObject.error === "Login already exists") {
+                        setFormMessage(createAccountForm, "error", "That username is already in use.");
+                        return;
+                    }
                     setFormMessage(createAccountForm, "success", "Registration successful. You can now login.");
                 }
                 else 
@@ -154,7 +155,39 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error(err.message);
         }
     });
+
+    function validateInput()
+    {
+        var validEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        let isValid = true;
+
+        document.querySelectorAll("#createAccount .form__input").forEach(inputElement => {
+            if (inputElement.value.length === 0) {
+                setInputError(inputElement, "This field is required");
+                isValid = false;
+            }
+            else 
+            {
+                if (inputElement.id === "signupUsername" && (inputElement.value.length < 6)) {
+                    setInputError(inputElement, "Username must be at least 6 characters in length");
+                    isValid = false;
+                }
+        
+                if (inputElement.id === "signupEmail" && !inputElement.value.match(validEmail)) {
+                    setInputError(inputElement, "Please enter a valid email address");
+                    isValid = false;
+                }
+        
+
+            }
+
+        });
+
+        return isValid;
+    }
 });
+
+
 
 function saveCookie()
 {
