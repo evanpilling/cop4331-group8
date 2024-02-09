@@ -7,6 +7,7 @@ const extension = 'php';
 let search = "";
 let firstName = "";
 let lastName = "";
+let tableIndex = 0;
 
 let tableFirstName = "";
 let tableLastName = "";
@@ -16,7 +17,7 @@ let tableLastName = "";
 // =============================================== Below: Page Initalization ==============================================
 document.addEventListener('DOMContentLoaded', function () {
     readCookie();
-    getContacts(search);
+    getContacts(search, tableIndex);
 }, false);
 // =============================================== Above: Page Initalization ==============================================
 
@@ -62,12 +63,12 @@ function readCookie() {
 
 
 // ================================================== Below: Data Table ===================================================
-function getContacts(searchFor) {
+function getContacts(searchFor, tableIndex) {
 
     const contactsTable = document.getElementById('contactsTable');
     let url = urlBase + '/SearchContact.' + extension;
 
-    let tmp = { UserID: userId, Search: searchFor };
+    let tmp = { UserID: userId, Search: searchFor, Index: tableIndex};
     let jsonPayload = JSON.stringify(tmp);
 
     let searchFirstName = "";
@@ -92,7 +93,7 @@ function getContacts(searchFor) {
                     searchFirstName = tempResult[0];
                     searchLastName = tempResult[1];
                     searchEmail = tempResult[2];
-                    searchPhoneNumber = tempResult[3];
+                    searchPhoneNumber = formatPhoneNumber(tempResult[3]);
                     
                     const row = document.createElement('tr');
                     row.innerHTML = `
@@ -118,13 +119,22 @@ function getContacts(searchFor) {
         console.error(err.message);
     }
 }
+
+document.querySelector('.table-responsive').addEventListener('scroll', () => {
+    const contactsTable = document.querySelector('.table-responsive');
+    if (contactsTable.offsetHeight + contactsTable.scrollTop >= contactsTable.scrollHeight) {
+        tableIndex++;
+        getContacts(search, tableIndex);
+    }
+});
 // ================================================== Above: Data Table ===================================================
 
 
 // ================================================== Below: Search Bar ===================================================
 
 user__search.addEventListener("input", e => {
-    getContacts(e.target.value);
+    search = e.target.value;
+    getContacts(search, tableIndex);
 });
 
 // ================================================== Above: Search Bar ===================================================
@@ -236,8 +246,6 @@ function openEditPopup(contactFirstName, contactLastName, contactEmail, contactP
 
     editPopup.classList.add("open-popup");
 
-    // Change placeholder for inputs to be asscociated
-    // first, last, phone number, and email
 }
 
 function openDeletePopup(contactFirstName, contactLastname) {
@@ -251,7 +259,7 @@ function submitAndClosePopup() {
     let contactFName = document.getElementById("first__name__input").value;
     let contactLName = document.getElementById("last__name__input").value;
     let contactEmail = document.getElementById("email__input").value;
-    let contactPhoneNumber = document.getElementById("phone__number__input").value;
+    let contactPhoneNumber = document.getElementById("phone__number__input").value.replace(/\D/g, '');
     let contactID = userId;
 
 
@@ -269,7 +277,7 @@ function submitAndClosePopup() {
         {
             if (this.readyState == 4 && this.status == 200) 
             {
-                getContacts(search);
+                getContacts(search, tableIndex);
             }
 
         };
@@ -281,8 +289,23 @@ function submitAndClosePopup() {
         console.error(err.message);
     }
 
+    document.getElementById("first__name__input").value = "";
+    document.getElementById("last__name__input").value = "";
+    document.getElementById("email__input").value = "";
+    document.getElementById("phone__number__input").value = "";
+
     addPopup.classList.remove("open-popup");
 }
+
+document.querySelector('#phone__number__input').addEventListener('input', (e) => {
+    let val = e.target.value;
+    if (e.inputType === 'deleteContentBackward') {
+        return; 
+      }
+    e.target.value = formatPhoneNumber(val);
+  })
+
+
 
 function editAndClosePopup() {
     // Update changed information
@@ -290,7 +313,7 @@ function editAndClosePopup() {
     let newFirstName = document.getElementById('edit__first__name__input').value;
     let newLastName = document.getElementById('edit__last__name__input').value;
     let newEmailAddress = document.getElementById('edit__email__input').value;
-    let newPhoneNumber = document.getElementById('edit__phone__number__input').value;
+    let newPhoneNumber = document.getElementById('edit__phone__number__input').value.replace(/\D/g, '');
 
  	let tmp = {UserID:userId, SelectedFirstName:tableFirstName, SelectedLastName:tableLastName, NewFirstName:newFirstName, NewLastName:newLastName, NewEmailAddress:newEmailAddress, NewPhoneNumber:newPhoneNumber};
  	let jsonPayload = JSON.stringify( tmp );
@@ -306,7 +329,7 @@ function editAndClosePopup() {
 		{
 			if (this.readyState == 4 && this.status == 200) 
  			{
- 				getContacts(search);
+ 				getContacts(search, tableIndex);
  			}
  		};
         
@@ -320,6 +343,28 @@ function editAndClosePopup() {
 
 
     editPopup.classList.remove("open-popup");
+}
+
+document.querySelector('#edit__phone__number__input').addEventListener('input', (e) => {
+    let val = e.target.value;
+    if (e.inputType === 'deleteContentBackward') {
+        return; 
+      }
+    e.target.value = formatPhoneNumber(val);
+  })
+
+function formatPhoneNumber(phoneNumber) {
+    phoneNumber = phoneNumber.replace(/\D/g, '');
+    
+    return phoneNumber.replace(/(\d{1,3})(\d{1,3})?(\d{1,4})?/g, function(txt, f, s, t) {
+        if (t) {
+            return `(${f}) ${s}-${t}`;
+        } else if (s) {
+            return `(${f}) ${s}`;
+        } else if (f) {
+            return `(${f})`;
+        }
+    });
 }
 
 function deleteAndClosePopup() {
@@ -337,7 +382,7 @@ function deleteAndClosePopup() {
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
-				getContacts(search);
+				getContacts(search, tableIndex);
 			}
 
 		};
@@ -352,8 +397,13 @@ function deleteAndClosePopup() {
     deletePopup.classList.remove("open-popup");
 }
 
+
 // (Add Popup) Information not changed, only close popup
 function closeAddPopup() {
+    document.getElementById("first__name__input").value = "";
+    document.getElementById("last__name__input").value = "";
+    document.getElementById("email__input").value = "";
+    document.getElementById("phone__number__input").value = "";
     addPopup.classList.remove("open-popup");
 }
 
