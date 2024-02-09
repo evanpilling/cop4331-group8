@@ -158,7 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function validateInput()
     {
-        var validEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        var validEmail = /^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+]*$/;
         let isValid = true;
 
         document.querySelectorAll("#createAccount .form__input").forEach(inputElement => {
