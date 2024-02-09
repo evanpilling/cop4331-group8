@@ -230,4 +230,16 @@ function readCookie()
 	}
 }
 
+document.getElementById('linkCreateAccount').addEventListener('click', () => {
+    document.getElementById('brand__name').style.top = '1rem';
+    document.getElementById('brand__name').style.textShadow = '1px 1px 10px #fff, 1px 1px 20px #fff, 1px 1px 30px #fff, 1px 1px 40px #fff';
+    document.getElementById('brand__name').style.color = '#000000';
+});
 
+
+
+document.getElementById('linkLogin').addEventListener('click', () => {
+    document.getElementById('brand__name').style.top = '12rem';
+    document.getElementById('brand__name').style.textShadow = '1px 1px 10px #000000, 1px 1px 20px #000000, 1px 1px 30px #000000, 1px 1px 40px #000000';
+    document.getElementById('brand__name').style.color = '#fff';
+});
