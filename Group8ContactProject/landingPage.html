@@ -11,6 +11,7 @@
 
     <!-- Fontawesome Link (icons) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Bootstrap Icons Link -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -26,7 +27,7 @@
 <body>
     <!--  ---------------------  Above: Navbar Container --------------------- -->
     <header class="header">
-        <a href="#" class="logo">WeConnect</a>
+        <a class="logo">WeConnect</a>
 
         <input type="checkbox" id="check">
 
@@ -51,7 +52,7 @@
         <div class="form__data__table">
             <div class="form__table__title">
                 <div class="form__user">
-                    <h3 id="page__title">Logged in as [First Name] [Last Name]</h3>
+                    <h3 class="page__title" id="page__title">Logged in as [First Name] [Last Name]</h3>
                 </div>
 
                 <div class="form__search__bar" id="search__bar__container">
@@ -134,18 +135,50 @@
                 <img class="card-img-top" src="./images/img-1.jpg" alt="Card image cap" style="border-radius: 25px;">
                 <div class="card-body">
                     <h4 class="card-title" style="color: white;">Tanner Assenmacher</h4>
-                    <p class="card-text" style="color:silver">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <div class="card__text">
+                        <i class="fa fa-linkedin"
+                            style="color: white; font-size: 1.25rem; background-color: rgb(0, 119, 181); padding: .2rem; border-radius: 5px;"></i>
+                        <a href="https://www.linkedin.com/in/tanner-assenmacher-45364a246/" style="margin-left: 1.4rem;">LinkedIn</a>
+                    </div>
+                    <div class="card__text">
+                        <i class="fa fa-github" style="color: black; font-size: 2rem; border-radius: 50%;"></i>
+                        <a href="#">GitHub</a>
+                    </div>
+                    <div class="card__text">
+                        <i class="fa fa-instagram"
+                            style="color: white; font-size: 1.5rem; background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); padding: 0.15rem; border-radius: 5px;"></i>
+                        <a href="#">Instagram</a>
+                    </div>
+                    <div class="card__text">
+                        <i class="fa fa-envelope" style="color: white; font-size: 1.5rem;"></i>
+                        <p>placeholder@none.com</p>
+                    </div>
                     <h5 class="card-text"><small class="text-muted" style="color: rgb(0, 183, 186) !important">Computer
                             Science Undergraduate</small></h5>
                 </div>
             </div>
             <div class="card" id="contact__card">
-                <img class="card-img-top" src="./images/img-1.jpg" alt="Card image cap" style="border-radius: 25px;">
+                <img class="card-img-top" src="./images/kimsrun.jpg" alt="Card image cap" style="border-radius: 25px;">
                 <div class="card-body">
                     <h4 class="card-title" style="color: white;">Kimsrun Lim</h4>
-                    <p class="card-text" style="color: silver">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <div class="card__text">
+                        <i class="fa fa-linkedin"
+                            style="color: white; font-size: 1.25rem; background-color: rgb(0, 119, 181); padding: .2rem; border-radius: 5px;"></i>
+                        <a href="https://www.linkedin.com/in/kimsrun-lim/" style="margin-left: 1.4rem;">LinkedIn</a>
+                    </div>
+                    <div class="card__text">
+                        <i class="fa fa-github" style="color: black; font-size: 2rem; border-radius: 50%;"></i>
+                        <a href="https://github.com/KimsrunLim">GitHub</a>
+                    </div>
+                    <div class="card__text">
+                        <i class="fa fa-instagram"
+                            style="color: white; font-size: 1.5rem; background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); padding: 0.15rem; border-radius: 5px;"></i>
+                        <a href="https://www.instagram.com/kimsrun.lim/">Instagram</a>
+                    </div>
+                    <div class="card__text">
+                        <i class="fa fa-envelope" style="color: white; font-size: 1.5rem;"></i>
+                        <p>ksrunlim@gmail.com</p>
+                    </div>
                     <h5 class="card-text"><small class="text-muted" style="color: rgb(0, 183, 186) !important">Computer
                             Science Undergraduate</small></h5>
                 </div>
@@ -154,8 +187,24 @@
                 <img class="card-img-top" src="./images/img-1.jpg" alt="Card image cap" style="border-radius: 25px;">
                 <div class="card-body">
                     <h4 class="card-title" style="color: white;">Evan Pilling</h4>
-                    <p class="card-text" style="color: silver">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <div class="card__text">
+                        <i class="fa fa-linkedin"
+                            style="color: white; font-size: 1.25rem; background-color: rgb(0, 119, 181); padding: .2rem; border-radius: 5px;"></i>
+                        <a href="www.linkedin.com/in/evan-pilling-a39765250" style="margin-left: 1.4rem;">LinkedIn</a>
+                    </div>
+                    <div class="card__text">
+                        <i class="fa fa-github" style="color: black; font-size: 2rem; border-radius: 50%;"></i>
+                        <a href="#">GitHub</a>
+                    </div>
+                    <div class="card__text">
+                        <i class="fa fa-instagram"
+                            style="color: white; font-size: 1.5rem; background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); padding: 0.15rem; border-radius: 5px;"></i>
+                        <a href="#">Instagram</a>
+                    </div>
+                    <div class="card__text">
+                        <i class="fa fa-envelope" style="color: white; font-size: 1.5rem;"></i>
+                        <p>placeholder@none.com</p>
+                    </div>
                     <h5 class="card-text"><small class="text-muted" style="color: rgb(0, 183, 186) !important">Computer
                             Science Undergraduate</small></h5>
                 </div>
@@ -164,8 +213,24 @@
                 <img class="card-img-top" src="./images/img-1.jpg" alt="Card image cap" style="border-radius: 25px;">
                 <div class="card-body">
                     <h4 class="card-title" style="color: white;">Luka Telebak</h4>
-                    <p class="card-text" style="color: silver">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <div class="card__text">
+                        <i class="fa fa-linkedin"
+                            style="color: white; font-size: 1.25rem; background-color: rgb(0, 119, 181); padding: .2rem; border-radius: 5px;"></i>
+                        <a href="#" style="margin-left: 1.4rem;">LinkedIn</a>
+                    </div>
+                    <div class="card__text">
+                        <i class="fa fa-github" style="color: black; font-size: 2rem; border-radius: 50%;"></i>
+                        <a href="https://github.com/idyllicdawn">GitHub</a>
+                    </div>
+                    <div class="card__text">
+                        <i class="fa fa-instagram"
+                            style="color: white; font-size: 1.5rem; background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); padding: 0.15rem; border-radius: 5px;"></i>
+                        <a href="#">Instagram</a>
+                    </div>
+                    <div class="card__text">
+                        <i class="fa fa-envelope" style="color: white; font-size: 1.5rem;"></i>
+                        <p>placeholder@none.com</p>
+                    </div>
                     <h5 class="card-text"><small class="text-muted" style="color: rgb(0, 183, 186) !important">Computer
                             Science Undergraduate</small></h5>
                 </div>
@@ -174,10 +239,26 @@
                 <img class="card-img-top" src="./images/img-1.jpg" alt="Card image cap" style="border-radius: 25px;">
                 <div class="card-body">
                     <h4 class="card-title" style="color: white;">Austin Frost</h4>
-                    <p class="card-text" style="color: silver">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <div class="card__text">
+                        <i class="fa fa-linkedin"
+                            style="color: white; font-size: 1.25rem; background-color: rgb(0, 119, 181); padding: .2rem; border-radius: 5px;"></i>
+                        <a href="#" style="margin-left: 1.4rem;">LinkedIn</a>
+                    </div>
+                    <div class="card__text">
+                        <i class="fa fa-github" style="color: black; font-size: 2rem; border-radius: 50%;"></i>
+                        <a href="#">GitHub</a>
+                    </div>
+                    <div class="card__text">
+                        <i class="fa fa-instagram"
+                            style="color: white; font-size: 1.5rem; background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); padding: 0.15rem; border-radius: 5px;"></i>
+                        <a href="#">Instagram</a>
+                    </div>
+                    <div class="card__text">
+                        <i class="fa fa-envelope" style="color: white; font-size: 1.5rem;"></i>
+                        <p>austinfrost04@gmail.com</p>
+                    </div>
                     <h5 class="card-text"><small class="text-muted" style="color: rgb(0, 183, 186) !important">Computer
-                            Science Undergraduate</small></h5>
+                            Engineering Undergraduate</small></h5>
                 </div>
             </div>
         </div>
@@ -206,7 +287,7 @@
                 <p>Phone Number:</p>
                 <input id="phone__number__input" type="text" class="contact__input" placeholder="(123) 456-789">
             </div>
-                
+
             <!-- <p>Your details have been successfully submitted. Thanks!</p> -->
             <div class="add__contact__buttons">
                 <button type="button" onclick="submitAndClosePopup()">Submit</button>
@@ -233,7 +314,7 @@
                 <p>Phone Number:</p>
                 <input id="edit__phone__number__input" type="text" placeholder="Loading...">
             </div>
-                
+
             <!-- <p>Your details have been successfully submitted. Thanks!</p> -->
             <div class="edit__contact__buttons">
                 <button type="button" onclick="editAndClosePopup()">Submit</button>

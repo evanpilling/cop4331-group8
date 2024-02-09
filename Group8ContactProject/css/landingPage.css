@@ -17,7 +17,7 @@ body {
     --color-secondary: #252c6a;
     --color-error: #cc3333;
     --color-success: #4bb544;
-    --border-radius: 5px;
+    --border-radius: 10px;
 
     min-height: 100vh;
     background-size: cover;
@@ -76,6 +76,8 @@ body {
     color: #fff;
     text-decoration: none;
     font-weight: 700;
+
+    pointer-events: none;
 }
 
 .form__navbar a {
@@ -87,8 +89,6 @@ body {
     color: #fff;
     text-decoration: none;
     font-weight: 500;
-
-    /* border: 2px solid red; */
 }
 
 .form__navbar a:hover {
@@ -226,6 +226,10 @@ body {
 
 
 /* ---------------------------------------- Below: section for Data Table ------------------------------------------------------ */
+.page__title {
+    pointer-events: none;
+}
+
 .form__data__table {
     min-width: 25rem;
     max-width: 100rem;
@@ -573,6 +577,28 @@ div#contact__card {
     background: rgba(0, 0, 0, 0.386);
     backdrop-filter: blur(50px);
     box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.635);
+}
+
+.card__text {
+    display: flex;
+    align-items: center;
+    margin-inline: 25%;
+    margin-block: .5rem;
+    justify-content: space-evenly;
+}
+
+.card__text a,
+.card__text p {
+    margin-block: auto;
+    margin-left: 1rem;
+    font-size: 1.25rem;
+    text-decoration: none;
+    color: silver;
+}
+
+.card__text a:hover {
+    text-decoration: underline;
+    color: rgb(9, 144, 254);
 }
 /* --------------------------------------- Above: Section for Contact Page ----------------------------------------------------- */
 
