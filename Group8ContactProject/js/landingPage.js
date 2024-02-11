@@ -123,7 +123,7 @@ function getContacts(searchFor, tableIndex) {
 document.querySelector('.table-responsive').addEventListener('scroll', () => {
     const contactsTable = document.querySelector('.table-responsive');
     if (contactsTable.offsetHeight + contactsTable.scrollTop >= contactsTable.scrollHeight) {
-        tableIndex++;
+        tableIndex += 5;
         getContacts(search, tableIndex);
     }
 });
@@ -133,6 +133,7 @@ document.querySelector('.table-responsive').addEventListener('scroll', () => {
 // ================================================== Below: Search Bar ===================================================
 
 user__search.addEventListener("input", e => {
+    tableIndex = 0;
     search = e.target.value;
     getContacts(search, tableIndex);
 });
@@ -256,6 +257,9 @@ function openDeletePopup(contactFirstName, contactLastname) {
 }
 
 function submitAndClosePopup() {
+    if (!validateInput(".contact__input")) {
+        return;
+    }
     let contactFName = document.getElementById("first__name__input").value;
     let contactLName = document.getElementById("last__name__input").value;
     let contactEmail = document.getElementById("email__input").value;
@@ -303,13 +307,79 @@ document.querySelector('#phone__number__input').addEventListener('input', (e) =>
         return; 
       }
     e.target.value = formatPhoneNumber(val);
-  })
+})
 
+function validateInput(query) {
+    var validEmail = /^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+]*$/;
+    let isValid = true;
+    let phoneNumberLength = 14; // Length of a valid phone number in the format "(XXX) XXX-XXXX"
 
+    document.querySelectorAll(query).forEach(inputElement => {
+        if (inputElement.value.length === 0) {
+            setInputError(inputElement, "This field is required")
+            isValid = false;
+        }
+        else {
+            switch (inputElement.id) {
+                case "email__input":
+                    if (!inputElement.value.match(validEmail)){
+                        setInputError(inputElement, "Please enter a valid email address");
+                        isValid = false;
+                    }
+                    break;
+                case "phone__number__input":
+                    if (!(inputElement.value.length == phoneNumberLength)) {
+                        setInputError(inputElement, "Please enter a valid phone number");
+                        isValid = false;
+                    }
+                    break;
+                case "edit__email__input":
+                    if (!inputElement.value.match(validEmail)){
+                        setInputError(inputElement, "Please enter a valid email address");
+                        isValid = false;
+                    }
+                    break;
+                case "edit__phone__number__input":
+                    if (!(inputElement.value.length == phoneNumberLength)) {
+                        setInputError(inputElement, "Please enter a valid phone number");
+                        isValid = false;
+                    }
+                    break;
+            }
+        }
+
+    });
+
+    return isValid;
+}
+
+function setInputError(inputElement, message) {
+    inputElement.classList.add("contact__input--error");
+    inputElement.nextElementSibling.textContent = message;
+}
+
+function clearInputError(inputElement) {
+    inputElement.classList.remove("contact__input--error");
+    inputElement.nextElementSibling.textContent = "";
+}
+
+document.querySelectorAll(".contact__input").forEach(inputElement => {
+    inputElement.addEventListener("input", () => {
+        clearInputError(inputElement);
+    });
+});
+
+document.querySelectorAll(".contact__edit").forEach(inputElement => {
+    inputElement.addEventListener("input", () => {
+        clearInputError(inputElement);
+    });
+});
 
 function editAndClosePopup() {
-    // Update changed information
-    // Any unchagned information should not be blank
+    if (!validateInput(".contact__edit")) {
+        return;
+    }
+    
     let newFirstName = document.getElementById('edit__first__name__input').value;
     let newLastName = document.getElementById('edit__last__name__input').value;
     let newEmailAddress = document.getElementById('edit__email__input').value;
@@ -342,7 +412,7 @@ function editAndClosePopup() {
  	}
 
 
-    editPopup.classList.remove("open-popup");
+     closeEditPopup();
 }
 
 document.querySelector('#edit__phone__number__input').addEventListener('input', (e) => {
@@ -354,7 +424,7 @@ document.querySelector('#edit__phone__number__input').addEventListener('input', 
   })
 
 function formatPhoneNumber(phoneNumber) {
-    phoneNumber = phoneNumber.replace(/\D/g, '');
+    phoneNumber = phoneNumber.replace(/\D/g, '').substring(0, 10); // don't allow input if you've already input 10 numbers and strip all non-number characters
     
     return phoneNumber.replace(/(\d{1,3})(\d{1,3})?(\d{1,4})?/g, function(txt, f, s, t) {
         if (t) {
@@ -404,11 +474,20 @@ function closeAddPopup() {
     document.getElementById("last__name__input").value = "";
     document.getElementById("email__input").value = "";
     document.getElementById("phone__number__input").value = "";
+
+    document.querySelectorAll(".contact__input").forEach(inputElement => {
+        clearInputError(inputElement);
+    });
+
     addPopup.classList.remove("open-popup");
 }
 
 // (Edit Popup) Information not changed, only close popup
 function closeEditPopup() {
+    document.querySelectorAll(".contact__edit").forEach(inputElement => {
+        clearInputError(inputElement);
+    });
+
     editPopup.classList.remove("open-popup");
 }
 

@@ -15,7 +15,7 @@ function setFormMessage(formElement, type, message) {
 
 function setInputError(inputElement, message) {
     inputElement.classList.add("form__input--error");
-    inputElement.parentElement.querySelector(".form__input-error-message").textContent = message;
+    inputElement.parentElement.querySelector(".form__input-error-message").innerHTML = message;
 }
 
 function clearInputError(inputElement) {
@@ -93,14 +93,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
-    document.querySelectorAll(".form__input").forEach(inputElement => {
+    document.querySelectorAll("#createAccount .form__input").forEach(inputElement => {
         inputElement.addEventListener("input", e => {
             clearInputError(inputElement);
         });
     });
     
     createAccountForm.addEventListener("submit", e => {
-        
         e.preventDefault();
         if (!validateInput()) {
             return;
@@ -110,12 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const registerUsername = document.getElementById("signupUsername").value;
         const registerEmail = document.getElementById("signupEmail").value;
         const registerPassword = document.getElementById("signupPassword").value;
-        const confirmPassword = document.getElementById("confirmPassword").value;
     
-        if (registerPassword !== confirmPassword) {
-            setFormMessage(createAccountForm, "error", "Passwords do not match");
-            return;
-        }
     
         let tmp = {
             FirstName: registerFirstName,
@@ -138,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (this.readyState == 4 && this.status == 200) {
                     let jsonObject = JSON.parse(xhr.responseText);
                     if (jsonObject.error === "Login already exists") {
-                        setFormMessage(createAccountForm, "error", "That username is already in use.");
+                        setInputError(document.getElementById("signupUsername"), "A user with this username already exists");
                         return;
                     }
                     setFormMessage(createAccountForm, "success", "Registration successful. You can now login.");
@@ -156,10 +150,38 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    document.getElementById("signupPassword").addEventListener("input", function() {
+        let password = this.value;
+        let requirements = "";
+    
+        if (password.length < 8) {
+            requirements += "• Password must be at least 8 characters<br>";
+        }
+    
+        // Check for at least one number
+        if (!/\d/.test(password)) {
+            requirements += "• Password must contain at least one number<br>";
+        }
+    
+        // Check for at least one special character
+        if (!/[!@#$%^&*]/.test(password)) {
+            requirements += "• Password must contain at least one special character";
+        }
+    
+        if (requirements) {
+            setInputError(this, requirements);
+        } else {
+            clearInputError(this);
+        }
+    });
+
     function validateInput()
     {
-        var validEmail = /^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+]*$/;
+        let validEmail = /^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+]*$/;
+        let validPassword = /^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/;
         let isValid = true;
+        let signupPassword = document.getElementById("signupPassword");
+        let confirmPassword = document.getElementById("confirmPassword");
 
         document.querySelectorAll("#createAccount .form__input").forEach(inputElement => {
             if (inputElement.value.length === 0) {
@@ -177,7 +199,16 @@ document.addEventListener("DOMContentLoaded", () => {
                     setInputError(inputElement, "Please enter a valid email address");
                     isValid = false;
                 }
-        
+
+                if (inputElement.id === "signupPassword" && !inputElement.value.match(validPassword)) {
+                    isValid = false; // Setting input error handled by event listener
+                }
+                
+                if (inputElement.id === "confirmPassword" && (signupPassword.value !== confirmPassword.value) && (signupPassword.value !== "") && (confirmPassword.value !== "")) {
+                    setInputError(document.getElementById("signupPassword"), "");
+                    setInputError(document.getElementById("confirmPassword"), "Passwords must match");
+                    isValid = false;
+                }
 
             }
 
