@@ -182,7 +182,7 @@ body {
     display: flex;
 
     /* The image used */
-    background: url(../images/background4.jpg);
+    background: url(../images/background9.jpg);
     /* background: rgb(43, 177, 86); */
 
     /* Set a specific height */
@@ -236,7 +236,7 @@ body {
 
     width: 75rem;
     border-radius: var(--border-radius);
-    border: 3px solid rgba(105, 104, 104, 0.212);
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.536);
 
     max-height: 40rem;
     height: 40rem;
@@ -490,6 +490,7 @@ button#delete__button:hover {
     padding-bottom: 15px;
     flex-direction: column;
     border-radius: var(--border-radius);
+    box-shadow: 0 0 15px rgb(0, 0, 0);
     width: 80%;
 }
 
@@ -547,7 +548,7 @@ button#delete__button:hover {
     display: flex;
 
     /* The image used */
-    background: url(../images/background6.jpg);
+    background: url(../images/background10.jpg);
     /* background: rgb(43, 177, 86); */
 
     /* Set a specific height */
@@ -575,9 +576,14 @@ div#contact__card {
     margin: 1rem;
     padding: 1rem;
     border-radius: var(--border-radius);
-    background: rgba(0, 0, 0, 0.386);
+    background: rgba(0, 0, 0, 0.767);
     backdrop-filter: blur(50px);
-    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.635);
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.536);
+}
+
+.card__img__top {
+    border-radius: var(--border-radius);
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.536);
 }
 
 .card__text {
@@ -594,12 +600,11 @@ div#contact__card {
     margin-left: 1rem;
     font-size: 1.25rem;
     text-decoration: none;
-    color: silver;
+    color: rgb(0, 255, 247);
 }
 
 .card__text a:hover {
     text-decoration: underline;
-    color: rgb(9, 144, 254);
 }
 /* --------------------------------------- Above: Section for Contact Page ----------------------------------------------------- */
 
