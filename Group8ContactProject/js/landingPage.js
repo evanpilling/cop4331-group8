@@ -122,6 +122,18 @@ function getContacts(searchFor, tableIndex) {
 
 document.querySelector('.table-responsive').addEventListener('scroll', () => {
     const contactsTable = document.querySelector('.table-responsive');
+
+    // -------------------------------------------------------------------------
+    console.log("offset Height: " + contactsTable.offsetHeight);
+    console.log("scroll Top: " + contactsTable.scrollTop);
+
+    let added = (contactsTable.offsetHeight + contactsTable.scrollTop);
+
+    console.log("offset and top: " + added);
+
+    console.log("scroll Height: " + contactsTable.scrollHeight);
+    // -------------------------------------------------------------------------
+
     if (contactsTable.offsetHeight + contactsTable.scrollTop >= contactsTable.scrollHeight) {
         tableIndex += 5;
         getContacts(search, tableIndex);
