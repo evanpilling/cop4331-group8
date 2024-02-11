@@ -206,7 +206,7 @@ body {
     display: flex;
 
     /* The image used */
-    background: url(../images/largebackground.jpg);
+    background: url(../images/largebackground2.jpg);
     /* background: rgb(43, 177, 86); */
 
     /* Set a specific height */
@@ -494,7 +494,8 @@ button#delete__button:hover {
 }
 
 .carousel .card .img {
-    background: #8B53FF;
+    background: rgb(0, 0, 0);
+    backdrop-filter: blur(50px);
     height: 148px;
     width: 148px;
     border-radius: 50%;
