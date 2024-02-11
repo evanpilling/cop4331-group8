@@ -134,7 +134,7 @@ document.querySelector('.table-responsive').addEventListener('scroll', () => {
     console.log("scroll Height: " + contactsTable.scrollHeight);
     // -------------------------------------------------------------------------
 
-    if (contactsTable.offsetHeight + contactsTable.scrollTop >= contactsTable.scrollHeight) {
+    if (Math.ceil(contactsTable.offsetHeight + contactsTable.scrollTop) >= contactsTable.scrollHeight) {
         tableIndex += 5;
         getContacts(search, tableIndex);
     }
