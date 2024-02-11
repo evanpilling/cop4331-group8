@@ -85,8 +85,6 @@ function getContacts(searchFor, tableIndex) {
                 let jsonObject = JSON.parse(xhr.responseText);
                 contactsTable.innerHTML = '';
 
-                console.log(jsonObject);
-
                 jsonObject.results.forEach(results => {
                     // Split obtained result by space FirstName LastName Email Phone
                     tempResult = results.split(' ');
@@ -123,18 +121,7 @@ function getContacts(searchFor, tableIndex) {
 document.querySelector('.table-responsive').addEventListener('scroll', () => {
     const contactsTable = document.querySelector('.table-responsive');
 
-    // -------------------------------------------------------------------------
-    console.log("offset Height: " + contactsTable.offsetHeight);
-    console.log("scroll Top: " + contactsTable.scrollTop);
-
-    let added = (contactsTable.offsetHeight + contactsTable.scrollTop);
-
-    console.log("offset and top: " + added);
-
-    console.log("scroll Height: " + contactsTable.scrollHeight);
-    // -------------------------------------------------------------------------
-
-    if (Math.ceil(contactsTable.offsetHeight + contactsTable.scrollTop) >= contactsTable.scrollHeight) {
+    if (Math.ceil(contactsTable.offsetHeight + contactsTable.scrollTop) >= Math.floor(contactsTable.scrollHeight)) {
         tableIndex += 5;
         getContacts(search, tableIndex);
     }
