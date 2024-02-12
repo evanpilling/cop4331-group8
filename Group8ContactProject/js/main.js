@@ -54,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
             easterEgg();
             return;
         }
+        
         let tmp = {login:login,password:password};
         let jsonPayload = JSON.stringify( tmp );
         
