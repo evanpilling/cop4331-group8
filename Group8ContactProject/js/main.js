@@ -268,7 +268,7 @@ function easterEgg() {
     let easterEgg = document.getElementById('easter__shark');
     easterEgg.style.visibility = "visible";
     easterEgg.style.animation = "myShark 10s";
-    const targetTime = new Date().getTime() + 10000;
+    const targetTime = new Date().getTime() + 9000;
     stallUntil(targetTime, easterEgg);
 }
 
