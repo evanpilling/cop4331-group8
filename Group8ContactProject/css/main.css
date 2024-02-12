@@ -110,7 +110,7 @@ body {
     background: url(../images/button3.jpg);
     background-size: cover;
     opacity: 0.7;
-    color: rgb(93, 93, 93);
+    color: rgb(0, 0, 0);
 }
 
 .form__button:hover {
