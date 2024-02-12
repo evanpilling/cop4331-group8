@@ -68,6 +68,12 @@ body {
     left: 100%;
 }
 
+.weconnect__logo {
+    box-sizing: border-box;
+    width: 2rem;
+    margin-bottom: .5rem;
+}
+
 .logo {
     margin: 0;
     padding: 0;
