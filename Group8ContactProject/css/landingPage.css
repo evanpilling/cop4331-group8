@@ -279,6 +279,12 @@ body {
     border: 1px solid black;
 }
 
+.searching {
+    width: 360px;
+    box-shadow: 1px 1px 20px white;
+    border: 1px solid black;
+}
+
 .form__search__bar .search__input {
     position: relative;
     width: 100%;
@@ -293,6 +299,11 @@ body {
 }
 
 .form__search__bar:hover .search__input {
+    visibility: visible;
+    width: 100%;
+}
+
+.active__search {
     visibility: visible;
     width: 100%;
 }

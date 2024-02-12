@@ -494,4 +494,16 @@ function closeDeletePopup() {
     deletePopup.classList.remove("open-popup");
 }
 
+document.getElementById("user__search").addEventListener("input", e => {
+    let active = document.getElementById("user__search");
+    let container = document.getElementById("search__bar__container");
 
+    if (active.value != "") {
+        container.classList.add("searching");
+        active.classList.add("active__search");
+    }
+    else {
+        container.classList.remove("searching");
+        active.classList.remove("active__search");
+    }
+});
