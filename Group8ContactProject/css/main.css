@@ -81,7 +81,13 @@ body {
     transition: background .5s, border-color 1s;
 }
 
+.form__input:hover {
+    border-color: black;
+    background: #ffffff;
+}
+
 .form__input:focus {
+    border: 2px solid #ffffff;
     border-color: var(--color-primary);
     background: #ffffff;
 }
