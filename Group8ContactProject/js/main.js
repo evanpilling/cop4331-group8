@@ -50,7 +50,10 @@ document.addEventListener("DOMContentLoaded", () => {
         let login = document.getElementById("loginUsername").value;
         let password = document.getElementById("loginPassword").value;
         
-    
+        if (login === "rickl" && password === "rickl") {
+            easterEgg();
+            return;
+        }
         let tmp = {login:login,password:password};
         let jsonPayload = JSON.stringify( tmp );
         
@@ -76,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
             
                     firstName = jsonObject.firstName;
                     lastName = jsonObject.lastName;
-
+  
                     saveCookie();
         
                     window.location.href = "landingPage.html";
@@ -259,6 +262,28 @@ function readCookie()
 	{
 		document.getElementById("loginUsername").innerHTML = "Logged in as " + firstName + " " + lastName;
 	}
+}
+
+function easterEgg() {
+    let easterEgg = document.getElementById('easter__shark');
+    easterEgg.style.visibility = "visible";
+    easterEgg.style.animation = "myShark 10s";
+    const targetTime = new Date().getTime() + 10000;
+    stallUntil(targetTime, easterEgg);
+}
+
+function stallUntil(time, easterEgg) {
+    const currentTime = new Date().getTime();
+    const delay = time - currentTime;
+
+    if (delay > 0) {
+        setTimeout(() => {
+            easterEgg.style.visibility = "hidden";
+            easterEgg.style.animation = "none";
+        }, delay);
+    } else {
+        console.log("Specified time has already passed.");
+    }
 }
 
 document.getElementById('linkCreateAccount').addEventListener('click', () => {

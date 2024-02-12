@@ -173,15 +173,16 @@ body {
     scale: 2;
 
     bottom: 4rem;
-    animation: myShark 5s infinite;
+    animation: none;
+    visibility: hidden;
 }
 
 @keyframes myShark
 {
-    from {
-        transform: translate(240%, 0%);
+    0% {
+        transform: translate(50vw, 0%);
     }
-    to {
-        transform: translate(-250%, 0%);
+    100% {
+        transform: translate(-50vw, 0%);
     }
 }
