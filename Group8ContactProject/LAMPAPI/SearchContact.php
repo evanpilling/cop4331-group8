@@ -20,7 +20,6 @@
 		$stmt = $conn->prepare("SELECT * FROM Contacts WHERE (UserID=? AND CONCAT(FirstName, ' ', LastName) LIKE ?) LIMIT ?");
 		$ContactName = "%" . $inData["Search"] . "%";
 		$stmt->bind_param("ssi", $UserID, $ContactName, $Index);
-		// , $ContactName, $ContactName
 		$stmt->execute();
 		
 		$result = $stmt->get_result();
