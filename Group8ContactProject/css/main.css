@@ -163,3 +163,25 @@ body {
 
     font-size: 5rem;
 }
+
+
+/* ---------------------------------------------------------- Easter Egg ---------------------------------------------------------- */
+
+.easter__egg {
+    display: flex;
+    position: fixed;
+    scale: 2;
+
+    bottom: 4rem;
+    animation: myShark 5s infinite;
+}
+
+@keyframes myShark
+{
+    from {
+        transform: translate(240%, 0%);
+    }
+    to {
+        transform: translate(-250%, 0%);
+    }
+}
